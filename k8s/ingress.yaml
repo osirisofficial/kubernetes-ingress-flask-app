@@ -18,18 +18,18 @@ spec:
             service:
               name: api-service
               port:
-                number: 80 #clusterip port
+                number: 30007 #clusterip port
         - path: /usr
           pathType: Prefix
           backend:
             service:
               name: user-service
               port:
-                number: 80 #clusterip port
+                number: 30008 #clusterip port
         - path: /admin
           pathType: Prefix
           backend:
             service:
               name: admin-service
               port:
-                number: 80 #clusterip port
+                number: 30009 #clusterip port
