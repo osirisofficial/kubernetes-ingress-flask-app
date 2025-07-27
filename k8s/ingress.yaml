@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: basic-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: / #redirect "/webapp" it redirect it to /
+spec:
+  # controller class name mentioned inside controller pod
+  #it define used nginx controller
+  ingressClassName: nginx
+  rules:
+    - hostname: example.com
+      http:
+      paths:
+        - path: /api
+          pathType: Prefix
+          backend:
+            service:
+              name: api-service
+              port:
+                number: 80 #clusterip port
+        - path: /usr
+          pathType: Prefix
+          backend:
+            service:
+              name: user-service
+              port:
+                number: 80 #clusterip port
+        - path: /admin
+          pathType: Prefix
+          backend:
+            service:
+              name: admin-service
+              port:
+                number: 80 #clusterip port
